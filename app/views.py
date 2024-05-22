@@ -17,10 +17,12 @@ def insertdata(request):
         gender=request.POST.get('gender')
         query=Student(name=name,email=email,age=age,gender=gender)
         query.save()
+        return redirect("/")
     return render(request,"index.html")
 def update(request,id):
     d=Student.objects.get(id=id)
     context={"d":d}
+    
 
     if request.method=="POST":
         name=request.POST.get('name')
@@ -35,6 +37,7 @@ def update(request,id):
         edit.save()
         query=Student(name=name,email=email,age=age,gender=gender)
         query.save()
+        return redirect("/")
     return render(request,"edit.html",context)
 def delete(request,id):
     d=Student.objects.get(id=id)
